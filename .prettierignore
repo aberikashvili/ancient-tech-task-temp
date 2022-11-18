@@ -1,0 +1,7 @@
+/dist
+/node_modules
+/schematics
+package.json
+package-lock.json
+**/*.md
+.*/

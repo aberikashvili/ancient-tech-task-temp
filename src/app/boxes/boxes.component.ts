@@ -12,12 +12,11 @@ export class BoxesComponent implements OnInit {
   public constructor(private _apiService: ApiService) {}
 
   public ngOnInit(): void {
-    this._apiService.loadBoxes()
-      .subscribe(({ data, loading }) => {
-        this.boxes = data.boxes;
+    this._apiService.loadBoxes().subscribe(({ data, loading }) => {
+      this.boxes = data.boxes;
 
-        console.log('BOXES', this.boxes);
-        console.log('LOADING', loading);
-      });
+      console.log('BOXES', this.boxes);
+      console.log('LOADING', loading);
+    });
   }
 }

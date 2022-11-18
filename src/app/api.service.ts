@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class ApiService {
             }
           }
         }
-      `
+      `,
     });
   }
 }
