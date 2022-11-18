@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "graphql:introspect": "gql-gen --schema https://api-staging.csgoroll.com/graphql --template graphql-codegen-introspection-template --out schema.json",
+    "graphql:generate": "gql-gen --schema schema.json --template graphql-codegen-apollo-angular-template --out src/app/graphql/index.ts src/app/graphql/*.graphql"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +20,13 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@apollo/client": "^3.7.1",
+    "apollo-angular": "^4.1.1",
+    "graphql": "^16.6.0",
+    "graphql-code-generator": "^0.18.2",
+    "graphql-codegen-apollo-angular-template": "^0.18.2",
+    "graphql-codegen-introspection-template": "^0.18.2",
+    "graphql-tag": "^2.12.6",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
