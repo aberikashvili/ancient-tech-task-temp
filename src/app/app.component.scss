@@ -1,0 +1,11 @@
+.app {
+  &__header {
+    &-spacer {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__content {
+    padding: 0 16px;
+  }
+}
