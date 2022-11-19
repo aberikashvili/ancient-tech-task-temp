@@ -11,6 +11,8 @@ import * as BoxActions from '@app/store/box/box.actions';
 import { isOpeningSelector } from '@app/store/box/box.selectors';
 import { boxOpeningsSelector } from '@app/store/box/box.selectors';
 import { BoxOpeningModel } from '@app/models/box-opening.model';
+import { errorSelector } from '@app/store/box/box.selectors';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-box-details',
@@ -24,13 +26,15 @@ export class BoxDetailsComponent implements OnInit {
   isLoading$ = this._store.pipe(select(isLoadingSelector));
   isOpening$ = this._store.pipe(select(isOpeningSelector));
   boxeOpenings$ = this._store.pipe(select(boxOpeningsSelector));
+  error$ = this._store.pipe(select(errorSelector));
 
   boxOpenings: BoxOpeningModel[] = [];
 
   constructor(
     private _route: ActivatedRoute,
     private _onDestroy$$: OnDestroySubject,
-    private _store: Store<IAppStateModel>
+    private _store: Store<IAppStateModel>,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +55,13 @@ export class BoxDetailsComponent implements OnInit {
       .subscribe((openings: BoxOpeningModel[]) => {
         this.boxOpenings = openings;
       });
+
+    this.error$
+      .pipe(
+        takeUntil(this._onDestroy$$),
+        filter((error) => !!error)
+      )
+      .subscribe((error) => this._snackBar.open(error || '', 'OK'));
   }
 
   openBox(): void {
