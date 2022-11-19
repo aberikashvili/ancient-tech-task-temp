@@ -3,14 +3,16 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { map, Observable } from 'rxjs';
 import { BoxModel } from '@app/models/box.model';
+import { OpenBoxInputModel } from '@app/models/open-box-input.model';
+import { BoxOpeningModel } from '@app/models/box-opening.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  public constructor(private _apollo: Apollo) {}
+  constructor(private _apollo: Apollo) {}
 
-  public loadBoxes(): Observable<BoxModel[]> {
+  loadBoxes(): Observable<BoxModel[]> {
     return this._apollo
       .query<any>({
         query: gql`
@@ -40,5 +42,31 @@ export class ApiService {
           })) as BoxModel[];
         })
       );
+  }
+
+  openBox(input: OpenBoxInputModel): Observable<BoxOpeningModel[]> {
+    const OPEN_BOX = gql`
+      mutation OpenBox($input: OpenBoxInput!) {
+        openBox(input: $input) {
+          boxOpenings {
+            id
+            itemVariant {
+              id
+              name
+              value
+            }
+          }
+        }
+      }
+    `;
+
+    return this._apollo
+      .mutate({
+        mutation: OPEN_BOX,
+        variables: {
+          input,
+        },
+      })
+      .pipe(map((response: any) => response.data.openBox.boxOpenings as BoxOpeningModel[]));
   }
 }

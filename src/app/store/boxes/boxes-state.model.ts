@@ -1,4 +1,4 @@
-import { BoxModel } from '../../models/box.model';
+import { BoxModel } from '@app/models/box.model';
 
 export interface BoxesStateModel {
   isLoading: boolean;

@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 const MATERIAL_MODULES: any[] = [
@@ -15,6 +17,7 @@ const MATERIAL_MODULES: any[] = [
   MatToolbarModule,
   MatIconModule,
   MatProgressSpinnerModule,
+  MatProgressBarModule,
   FlexLayoutModule,
 ];
 

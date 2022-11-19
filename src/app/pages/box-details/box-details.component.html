@@ -1,0 +1,20 @@
+<app-loading-spinner [isLoading$]="isLoading$"></app-loading-spinner>
+
+<mat-card *ngIf="(isLoading$ | async) !== true" class="box-details">
+  <mat-card-header>
+    <mat-card-title>{{ box.name }}</mat-card-title>
+    <mat-card-subtitle>{{ box.cost }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [attr.src]="box.iconUrl" />
+  <mat-card-content *ngIf="boxOpenings.length > 0">
+    <p *ngFor="let opening of boxOpenings">
+      You won: {{ opening.itemVariant.name }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-flat-button color="accent" (click)="openBox()">OPEN</button>
+  </mat-card-actions>
+  <mat-card-footer *ngIf="isOpening$ | async">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
