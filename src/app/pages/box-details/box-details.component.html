@@ -8,11 +8,18 @@
   <img mat-card-image [attr.src]="box.iconUrl" />
   <mat-card-content *ngIf="boxOpenings.length > 0">
     <p *ngFor="let opening of boxOpenings">
-      You won: {{ opening.itemVariant.name }}
+      <b>You won:</b> {{ opening.itemVariant.name }}
     </p>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-flat-button color="accent" (click)="openBox()">OPEN</button>
+    <button
+      mat-flat-button
+      color="accent"
+      (click)="openBox()"
+      [disabled]="(isOpening$ | async) === true"
+    >
+      OPEN
+    </button>
   </mat-card-actions>
   <mat-card-footer *ngIf="isOpening$ | async">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>

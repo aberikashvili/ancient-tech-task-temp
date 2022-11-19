@@ -1,7 +1,10 @@
 <mat-toolbar color="primary">
   <span>Tech Task</span>
-  <span class="app__header-spacer"></span>
   <a mat-button routerLink="boxes">Boxes</a>
+  <span class="app__header-spacer"></span>
+  <div *ngIf="(isLoading$ | async) !== true" class="app__header-user-info">
+    Hi {{ currentUser.name }}, Your balance is {{ balance }}
+  </div>
 </mat-toolbar>
 
 <div class="app__content">

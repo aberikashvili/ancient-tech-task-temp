@@ -6,6 +6,7 @@ import { environment } from '@env/environment';
 import { reducers } from './reducers';
 import { BoxesEffects } from './boxes/boxes.effects';
 import { BoxEffects } from './box/box.effects';
+import { UserEffects } from './user/user.effects';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { BoxEffects } from './box/box.effects';
       logOnly: environment.production,
       autoPause: true,
     }),
-    EffectsModule.forRoot([BoxesEffects, BoxEffects]),
+    EffectsModule.forRoot([BoxesEffects, BoxEffects, UserEffects]),
   ],
 })
 export class NgrxStoreModule {}

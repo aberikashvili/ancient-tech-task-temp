@@ -7,7 +7,7 @@ import * as BoxActions from './box.actions';
 
 @Injectable()
 export class BoxEffects {
-  getBoxes$ = createEffect(() =>
+  openBox$ = createEffect(() =>
     this._actions$.pipe(
       ofType(BoxActions.openBox.type),
       mergeMap((payload: any) => {

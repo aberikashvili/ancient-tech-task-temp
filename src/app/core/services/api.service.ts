@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { BoxModel } from '@app/models/box.model';
 import { OpenBoxInputModel } from '@app/models/open-box-input.model';
 import { BoxOpeningModel } from '@app/models/box-opening.model';
+import { UserModel } from '@app/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -68,5 +69,25 @@ export class ApiService {
         },
       })
       .pipe(map((response: any) => response.data.openBox.boxOpenings as BoxOpeningModel[]));
+  }
+
+  getCurrentUser(): Observable<UserModel> {
+    return this._apollo
+      .query<any>({
+        query: gql`
+          query {
+            currentUser {
+              id
+              name
+              wallets {
+                id
+                amount
+                currency
+              }
+            }
+          }
+        `,
+      })
+      .pipe(map((response: any) => response.data.currentUser as UserModel));
   }
 }
