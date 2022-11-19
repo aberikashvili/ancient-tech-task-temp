@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-box',
+  selector: 'app-box-details',
   template: `Particular Box`,
 })
-export class BoxComponent {}
+export class BoxDetailsComponent {}

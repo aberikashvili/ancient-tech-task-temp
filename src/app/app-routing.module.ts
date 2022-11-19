@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BoxComponent } from './box/box.component';
-import { BoxesComponent } from './boxes/boxes.component';
+import { BoxDetailsComponent } from './pages/box-details/box-details.component';
+import { BoxesComponent } from './pages/boxes/boxes.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'boxes/:id',
-    component: BoxComponent,
+    component: BoxDetailsComponent,
   },
   {
     path: '',

@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '@env/environment';
 import { reducers } from './reducers';
+import { BoxesEffects } from './boxes/boxes.effects';
 
 @NgModule({
   imports: [
@@ -21,6 +23,7 @@ import { reducers } from './reducers';
       logOnly: environment.production,
       autoPause: true,
     }),
+    EffectsModule.forRoot([BoxesEffects]),
   ],
 })
 export class NgrxStoreModule {}
