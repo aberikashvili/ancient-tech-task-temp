@@ -8,6 +8,7 @@ import { IAppStateModel } from '@app/store/app-state.model';
 import { currentUserSelector, isLoadingSelector } from './store/user/user.selectors';
 import { UserModel } from './models/user.model';
 import { OnDestroySubject } from './shared/utils/on-destroy-subject';
+import { ApiService } from './core/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,11 @@ export class AppComponent implements OnInit {
     return this.currentUser.wallets[0].amount;
   }
 
-  constructor(private _store: Store<IAppStateModel>, private _onDestroy$$: OnDestroySubject) {}
+  constructor(
+    private _store: Store<IAppStateModel>,
+    private _onDestroy$$: OnDestroySubject,
+    private _apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     this._store.dispatch(BoxesActions.getBoxes());
@@ -36,5 +41,12 @@ export class AppComponent implements OnInit {
         filter((user) => !!user)
       )
       .subscribe((user: UserModel) => (this.currentUser = user));
+
+    this._apiService
+      .walletUpdateSubscription()
+      .pipe(takeUntil(this._onDestroy$$))
+      .subscribe((result) => {
+        console.log(result);
+      });
   }
 }

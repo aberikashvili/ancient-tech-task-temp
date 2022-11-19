@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   graphQlUri: 'https://api-staging.csgoroll.com/graphql',
+  wsUrl: 'wss://api-staging.csgoroll.com/graphql',
 };
 
 /*

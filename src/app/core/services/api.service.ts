@@ -90,4 +90,20 @@ export class ApiService {
       })
       .pipe(map((response: any) => response.data.currentUser as UserModel));
   }
+
+  walletUpdateSubscription(): Observable<any> {
+    return this._apollo.subscribe({
+      query: gql`
+        subscription OnUpdateWallet {
+          updateWallet {
+            wallet {
+              id
+              amount
+              name
+            }
+          }
+        }
+      `,
+    });
+  }
 }

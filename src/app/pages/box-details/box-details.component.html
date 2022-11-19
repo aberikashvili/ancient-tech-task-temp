@@ -8,7 +8,7 @@
   <img mat-card-image [attr.src]="box.iconUrl" />
   <mat-card-content *ngIf="boxOpenings.length > 0">
     <p *ngFor="let opening of boxOpenings">
-      <b>You won:</b> {{ opening.itemVariant.name }}
+      <b>You won:</b> {{ opening.itemVariant?.name }}
     </p>
   </mat-card-content>
   <mat-card-actions align="end">
