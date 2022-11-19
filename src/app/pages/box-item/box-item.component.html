@@ -1,0 +1,13 @@
+<mat-card class="box-item">
+  <mat-card-header>
+    <mat-card-title>{{ box.name }}</mat-card-title>
+    <mat-card-subtitle>{{ box.cost }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [attr.src]="box.iconUrl" />
+  <mat-card-content>
+    <p>Click <b>Details</b> button to view Box Page</p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="viewDetails()">Details</button>
+  </mat-card-actions>
+</mat-card>
